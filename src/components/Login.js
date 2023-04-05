@@ -22,10 +22,8 @@ const Login = () => {
     e.preventDefault();
     axios
       .post(URL, cred)
-      .then(
-        (res) => localStorage.setItem("token", res.data.token),
-        push("/friends")
-      )
+      .then((res) => localStorage.setItem("token", res.data.token))
+      .then((res) => push("/friends"))
       .catch((err) => console.error(err));
   };
   return (

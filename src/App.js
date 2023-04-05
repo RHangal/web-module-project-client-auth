@@ -3,6 +3,8 @@ import "./App.css";
 import Login from "./components/Login";
 import FriendList from "./components/FriendList";
 import AddFriend from "./components/AddFriend";
+import Logout from "./components/Logout";
+import Protected from "./components/Protected";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 
 function App() {
@@ -19,7 +21,7 @@ function App() {
         <Link className="links" to="friends/add">
           Add Friends
         </Link>
-        <Link className="links" to="friends/add">
+        <Link className="links" to="logout">
           Logout
         </Link>
       </header>
@@ -28,9 +30,25 @@ function App() {
 
         <Route path="/login" element={<Login />} />
 
-        <Route path="/friends" element={<FriendList />} />
+        <Route
+          path="/friends"
+          element={
+            <Protected>
+              <FriendList />
+            </Protected>
+          }
+        />
 
-        <Route path="/friends/add" element={<AddFriend />} />
+        <Route
+          path="/friends/add"
+          element={
+            <Protected>
+              <AddFriend />
+            </Protected>
+          }
+        />
+
+        <Route path="/logout" element={<Logout />} />
       </Routes>
     </div>
   );

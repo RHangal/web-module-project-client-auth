@@ -3,11 +3,11 @@ import axios from "axios";
 
 const URL = "http://localhost:9000/api/friends";
 const FriendList = () => {
-  const token = localStorage.getItem("token");
-
   const [friends, setFriends] = useState([]);
+  const [buffer, setBuffer] = useState(null);
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
     axios
       .get(URL, {
         headers: {
